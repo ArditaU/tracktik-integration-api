@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use Exception;
-use App\Services\OAuth2Service;
 use App\Services\TrackTikService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;

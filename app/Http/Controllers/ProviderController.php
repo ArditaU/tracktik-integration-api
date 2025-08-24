@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Http\Requests\CreateProvider1EmployeeRequest;
-use App\Http\Requests\CreateProvider2EmployeeRequest;
 use App\Jobs\SendEmployeeToTrackTik;
 use App\Services\TrackTikService;
 use Illuminate\Http\Request;

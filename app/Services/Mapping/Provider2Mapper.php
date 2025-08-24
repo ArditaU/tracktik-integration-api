@@ -7,6 +7,7 @@ class Provider2Mapper
     public function map($data)
     {
         return [
+            'id' => $data['id'],
             'firstName' => $data['f_name'],
             'lastName' => $data['l_name'],
             'email' => $data['email'] ?? null,

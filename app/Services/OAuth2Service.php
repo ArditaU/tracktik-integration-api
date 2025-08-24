@@ -6,7 +6,6 @@ use Exception;
 use App\Models\OauthToken;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
 
 class OAuth2Service
 {

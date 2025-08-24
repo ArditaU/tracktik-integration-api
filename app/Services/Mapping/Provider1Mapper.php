@@ -7,6 +7,7 @@ class Provider1Mapper
     public function map($data)
     {
         return [
+            'id' => $data['id'],
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'email' => $data['email'] ?? null,

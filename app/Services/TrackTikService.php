@@ -5,7 +5,6 @@ namespace App\Services;
 use Exception;
 use App\Models\ProviderEmployee;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -32,6 +31,7 @@ class TrackTikService
         try {
             if ($employee) {
                 $id = $employee->tracktik_employee_id;
+                unset($mappedData['id']);
 
                 $response = $client->put("employees/$id", [
                     'headers' => [
@@ -42,6 +42,7 @@ class TrackTikService
                 ]);
             } else {
                 $idempotencyKey = 'myApp-' . Str::uuid();
+                unset($mappedData['id']);
 
                 $response = $client->post('employees', [
                     'headers' => [
