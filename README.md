@@ -1,10 +1,20 @@
-# TrackTik Integration API (Docker Setup)
+# TrackTik Integration API
 
-This project provides a Dockerized Laravel application with a MySQL database and a database-driven queue worker, managed using Docker Compose. The setup includes a web server (Apache), MySQL, a Laravel queue worker, and an optional phpMyAdmin service for database management.
+This project provides a Laravel-based API that can be run in two ways:
+- **With Docker** (isolated environment)
+- **Without Docker** (using your local PHP, Composer, and MySQL setup)
+
+The app integrates with TrackTik and includes a database-driven queue worker for background jobs.
 
 ## Prerequisites
+**If running with Docker:**
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed on your machine.
-- Git to clone the repository.
+
+**If running without Docker:**
+- PHP >= 8.1
+- [Composer](https://getcomposer.org/)
+- MySQL
+
 
 ## Project Structure
 - `Dockerfile`: Defines the PHP/Apache environment with Supervisor for the Laravel app and queue worker.
@@ -14,9 +24,11 @@ This project provides a Dockerized Laravel application with a MySQL database and
 
 ## Setup Instructions
 
+**Option 1: Run with Docker**
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/ArditaU/tracktik-integration-api.git
+   cd tracktik-integration-api
    ```
 
 2. **Copy the Environment File**
@@ -39,7 +51,7 @@ This project provides a Dockerized Laravel application with a MySQL database and
    docker-compose run --rm app php artisan migrate
    ```
 
-5. **Run Queue**
+5. **Run Queue Worker**
    To start queue run this command:
    ```bash
    docker-compose run --rm app php artisan queue:work
@@ -53,4 +65,33 @@ This project provides a Dockerized Laravel application with a MySQL database and
    Remove containers and volumes (to reset MySQL data):
    ```bash
    docker-compose down -v
+   ```
+
+**Option 2: Run without Docker (Local Setup)**
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/ArditaU/tracktik-integration-api.git
+   cd tracktik-integration-api
+   ```
+2. **Install Dependencies**
+   ```bash
+   composer install
+   ```
+3. **Copy the Environment File**
+   ```bash
+   cp .env.example .env
+   ```
+4. **Run Database Migrations**
+   ```bash
+    php artisan migrate
+   ```
+5. **Start the Laravel Development Server**
+   ```bash
+    php artisan serve
+   ```
+**App will be available at http://localhost:8000**
+
+6. **Run Queue Worker**
+   ```bash
+    php artisan queue:work
    ```
